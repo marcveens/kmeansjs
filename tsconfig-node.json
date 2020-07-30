@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es5",
+      "lib": [
+        "es6",
+        "dom",
+        "es2017.object"
+      ],
+      "sourceMap": true,
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "jsx": "preserve",
+      "moduleResolution": "node",
+      "rootDir": "./",
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": false,
+      "strictNullChecks": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "noFallthroughCasesInSwitch": true,
+      "alwaysStrict": true,
+      "rootDirs": [
+        "scripts/"
+      ],
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "strict": true,
+      "resolveJsonModule": true,
+      "isolatedModules": false,
+      "noEmit": true,
+      "downlevelIteration": true,
+      "typeRoots": [
+        "src/types",
+        "node_modules/@types"
+      ]
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }

@@ -1,0 +1,28 @@
+{
+  "name": "kmeansjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:kmeans": "ts-node --project tsconfig-node.json src/index.ts --init",
+    "watch:kmeans": "nodemon --watch ./src/*.ts -e ts --exec npm run build:kmeans"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcveens/kmeansjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcveens/kmeansjs/issues"
+  },
+  "homepage": "https://github.com/marcveens/kmeansjs#readme",
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "ml-kmeans": "^5.0.0",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
