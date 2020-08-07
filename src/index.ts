@@ -7,34 +7,31 @@ require('dotenv').config();
 // - run kmeans
 
 import kmeans from 'ml-kmeans';
-import { ApiHelper } from './api/ApiHelper';
+import BluebirdPromise from 'bluebird';
+import { getElasticData } from './api/ElasticApi';
+import { flattenObject } from './utils/ObjectUtils';
+import { mapPropsToNumericList } from './utils/CollectionUtils';
+// @ts-ignore is actually permitted
+global.Promise = BluebirdPromise;
 
 const elasticSearchEndpoint = process.env.ELASTICSEARCH_ENDPOINT;
 const elasticSearchColumns = process.env.ELASTICSEARCH_COLUMNS;
-if (!elasticSearchEndpoint || !elasticSearchColumns) {
+const clusterTotal = process.env.CLUSTER_TOTAL;
+if (!elasticSearchEndpoint || !elasticSearchColumns || !clusterTotal) {
   throw Error('Required env variables not provided');
 }
 
-// let data = [['Duitsland', false, false, true], ['Duitsland', false, false, false], ['Nederland', true, true, true], ['Nederland', true, false, true]];
-let data = [[12], [25], [13], [25], [25]];
+const init = () => {
+  getElasticData(elasticSearchEndpoint, elasticSearchColumns.split(','))
+    .then(r => r.map(c => flattenObject(c)))
+    .then(mapPropsToNumericList)
+    .then(r => {
+      const clusters = kmeans(r, parseInt(clusterTotal));
 
-const init = async () => {
-  const results = await ApiHelper.postData(elasticSearchEndpoint, {});
-  console.log(results);
-
-  let ans = kmeans(data, 2);
-  console.log(ans, ans.centroids[0]);
+      console.log(JSON.stringify(clusters));
+    })
+    .catch(e => console.log(`Error: ${e}`));
 };
-/*
-KMeansResult {
-  clusters: [ 0, 0, 1, 1 ],
-  centroids: 
-   [ { centroid: [ 1, 1.5, 1 ], error: 0.25, size: 2 },
-     { centroid: [ -1, -1, -1.25 ], error: 0.0625, size: 2 } ],
-  converged: true,
-  iterations: 1
-}
-*/
 
 if (process.argv.indexOf('--init') > -1) {
   init();

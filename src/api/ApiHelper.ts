@@ -1,7 +1,9 @@
 import fetch from 'node-fetch';
+import BluebirdPromise from 'bluebird';
+fetch.Promise = BluebirdPromise.Promise;
 
 export class ApiHelper {
-    public static async postData<NewT, ReturnT>(url: string, data: NewT): Promise<ReturnT> {
+    public static async postData<ReturnT>(url: string, data: Object): Promise<ReturnT> {
         try {
             const response = await fetch(url, {
                 method: 'POST',
