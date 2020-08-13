@@ -10,9 +10,10 @@ const makeAllFieldsRequired = (fields: string[]) => {
     }));
 };
 
-export const getElasticData = (endpoint: string, fields: string[]) => {
+export const getElasticData = (endpoint: string, fields: string[], totalResults?: number) => {
     const postData = {
         _source: fields,
+        size: totalResults || 10,
         query: {
             bool: {
                 must: makeAllFieldsRequired(fields)
