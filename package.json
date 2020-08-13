@@ -21,6 +21,7 @@
   "homepage": "https://github.com/marcveens/kmeansjs#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
+    "express": "^4.17.1",
     "ml-kmeans": "^5.0.0",
     "node-fetch": "^2.6.0"
   },
@@ -29,6 +30,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
     "@types/bluebird": "^3.5.32",
+    "@types/express": "^4.17.7",
     "@types/jest": "^26.0.9",
     "@types/node": "^14.0.27",
     "babel-jest": "^26.2.2",

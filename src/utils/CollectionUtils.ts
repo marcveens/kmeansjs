@@ -37,7 +37,7 @@ export const mapPropsToNumericList = (collection: Collection) => {
 
         Object.keys(obj).forEach(key => {
             const value = obj[key];
-            let endValue = 0;
+            let endValue: undefined | number = undefined;
 
             if (typeof value === 'string') {
                 const { cache, index } = getIndexOfStringValue(stringCache, key, value);
@@ -49,7 +49,9 @@ export const mapPropsToNumericList = (collection: Collection) => {
                 endValue = value;
             }
 
-            collectionList.push(endValue);
+            if (typeof endValue === 'number') {
+                collectionList.push(endValue);
+            }
         });
 
         endList.push(collectionList);

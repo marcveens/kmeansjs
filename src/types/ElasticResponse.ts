@@ -1,5 +1,5 @@
 export type ElasticResponse<T> = {
-    took: number;
+  took: number;
   timed_out: boolean;
   _scroll_id?: string;
   _shards: any;
