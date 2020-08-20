@@ -54,7 +54,6 @@ export const ServeKmeansExtended = () => {
             };
         })
         .then(r => {
-            // console.log(r.flatList);
             const clusterOverview = kmeans(r.flatList, parseInt(clusterTotal));
             const clustersWithIds = kmeansManager.fieldIds.map((id, index) => ({
                 id,

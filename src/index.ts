@@ -14,6 +14,20 @@ app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 });
 
-app.get('/kmeans', (req, res) => ServeKmeans().then(results => res.send(results)));
-app.get('/kmeans-extended', (req, res) => ServeKmeansExtended().then(results => res.send(results)));
-app.get('/cluster-analysis', (req, res) => ServeClusterAnalysis().then(results => res.send(results)));
+app.get('/kmeans', (req, res, next) =>
+  ServeKmeans()
+    .then(results => res.send(results))
+    .catch(next)
+);
+
+app.get('/kmeans-extended', (req, res, next) =>
+  ServeKmeansExtended()
+    .then(results => res.send(results))
+    .catch(next)
+);
+
+app.get('/cluster-analysis', (req, res, next) =>
+  ServeClusterAnalysis()
+    .then(results => res.send(`<pre>${JSON.stringify(results, null, 3)}</pre>`))
+    .catch(next)
+);

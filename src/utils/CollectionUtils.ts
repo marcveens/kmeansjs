@@ -1,7 +1,5 @@
 type Collection = { [key: string]: string | number | boolean }[];
 type Cache = { [key: string]: string[] };
-type PropNames = string[];
-type NumericList = number[];
 type StringIndexReturn = {
     cache: Cache;
     index: number;
